@@ -1,0 +1,6 @@
+---BEGIN ROBOTS.TXT ---
+User-Agent: *
+Disallow:
+
+Sitemap: http://localhost:90/sitemap.html
+--- END ROBOTS.TXT ----
