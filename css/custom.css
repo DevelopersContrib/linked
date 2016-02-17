@@ -1,0 +1,363 @@
+.tab-marg{
+	margin: 0 !important;
+}
+.steps-tab .step{
+	margin: 0 0 3px 0 !important;
+	padding: 30px 5px 5px 5px;
+	width: 149px;
+}
+.centerthis{margin:0px auto !important;}
+.steps-tab li a span.number{
+	border-radius: 50%;
+	background-color: #4a77b8;
+	padding:  1px 5px 1px 5px;
+}
+.steps-tab li a span.number{
+	color: #e3e4e5;
+	font-size: 21px;
+	font-size: verdana;
+	font-weight: bold;
+}
+.steps-tab li a{
+	color: #757D89;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 21px;
+	letter-spacing: 1px;
+	padding: 0 10px 0 2px;
+	cursor: default;
+}
+.steps-tab li{
+	background: #EDEDED;
+	opacity: .4;
+}
+.current{
+	background: none !important;
+	opacity: 100 !important;
+}
+.steps-tab li:hover{
+	opacity: 100;
+	background-color: #fff;
+}
+.steps-tab li a i.meta-desc-tab{
+	font-size: 10px;
+	letter-spacing: 0;
+	line-height: 3px;
+	color: #9ea5ae;
+	margin-left: 15px;
+}
+.meta-welcome{
+	font-weight: bold;
+	color: #19273B;
+    font-size: 35px;
+    border-bottom:2px solid #fafafa;
+    margin-left:20px;
+    padding: 23px 0;
+}
+.ttl-header-form{
+	color: #19273B;
+    font-size: 28px;
+	line-height: 30px;
+	padding: 20px 0 30px;
+}
+.gray-bckgrnd{
+	background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid #E4E4E4;
+    border-radius: 5px 5px 5px 5px;
+}
+.center-img{
+	padding: 130px  50px 100px 50px;
+}
+.wrap-step1{
+	padding: 5px 5px 5px 50px;
+}
+.step-prvcy:hover, .step-terms:hover{
+	text-decoration:none;
+	color: #0088CC;
+}
+.fnt-styl{
+	font-size:11px;
+}
+/* step 2 style
+------------------------------------------*/
+.step2-ttle{
+	color: #19273B;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 20px 0 30px;
+	margin: 0 20px;
+}
+/*	Third step style
+------------------------------------------*/
+/*  Default
+---------------*/
+.seesaw_left .inactive,.seesaw_middle .inactive,.seesaw_right .inactive{
+    display: inline-block;
+    float: left;
+    padding-top: 180px;
+    width: 291px;
+}
+.seesaw_left .inactive {
+    background: url("https://d2qcctj8epnr7y.cloudfront.net/images/2013/icon-contrib-build1.png") no-repeat scroll 0 0 transparent;
+}
+.seesaw_middle .inactive {
+    background: url("https://d2qcctj8epnr7y.cloudfront.net/images/2013/icon-contrib-join1.png") no-repeat scroll 0 0 transparent;
+}
+.seesaw_right .inactive {
+    background: url("../../img/seesaw_demo_right.jpg") no-repeat scroll 0 0 transparent;
+}
+/*   Hover
+---------------------*/
+.seesaw_left .inactive:hover {
+    background: url("../../img/icon-contrib-build3.png") no-repeat scroll 0 0 transparent;
+}
+.seesaw_middle .inactive:hover {
+    background: url("../../img/icon-contrib-join3.png") no-repeat scroll 0 0 transparent;
+}
+.seesaw_right .inactive:hover {
+    background: url("../../img/seesaw_demo_right-gold.jpg") no-repeat scroll 0 0 transparent;
+}
+/*  Active
+-----------------*/
+.seesaw_left .active,.seesaw_middle .active,.seesaw_right .active{
+    display: inline-block;
+    float: left;
+    padding-top: 180px;
+    width: 291px;
+	cursor: default;
+}
+.seesaw_left .active {
+    background: url("https://d2qcctj8epnr7y.cloudfront.net/images/2013/icon-contrib-build2.png") no-repeat scroll 0 0 transparent;
+}
+.seesaw_middle .active{
+	background: url("https://d2qcctj8epnr7y.cloudfront.net/images/2013/icon-contrib-join2.png") no-repeat scroll 0 0 transparent;
+}
+.seesaw_right .active{
+	background: url("../../img/seesaw_demo_right-green.jpg") no-repeat scroll 0 0 transparent;
+}
+/*	H3 tittle
+-----------------------*/
+.steps3Bot h3 {
+    border: medium none;
+    color: #19273B;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0 20px;
+    padding: 10px 0;
+}
+/* Star rating 1 with reset
+----------------------------------*/
+/* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
+
+div.rating-cancel,div.star-rating{float:left;width:16px;height:15px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden;}
+div.rating-cancel,div.rating-cancel a{background:url('https://s3.amazonaws.com/assets.zipsite.net/images/jayson/linked/delete.gif') no-repeat 0 -16px}
+div.star-rating,div.star-rating a{background:url('https://s3.amazonaws.com/assets.zipsite.net/images/jayson/linked/star.gif') no-repeat 0 0px}
+div.rating-cancel a,div.star-rating a{display:block;width:16px;height:100%;background-position:0 0px;border:0}
+div.star-rating-on a{background-position:0 -16px!important}
+div.star-rating-hover a{background-position:0 -32px}
+/* Read Only CSS */
+div.star-rating-readonly a{cursor:default !important}
+/* Partial Star CSS */
+div.star-rating{background:transparent!important;overflow:hidden!important}
+/* END jQuery.Rating Plugin CSS */
+/*	Fifth step style connection
+----------------------------------*/
+/*  Default
+---------------*/
+.connect_left .inactive,.connect_right .inactive,.connect_middle .inactive{
+    display: inline-block;
+    float: left;
+    padding-top: 216px;
+    width: 291px;
+}
+.connect_left .inactive {
+    background: url("../../img/connect_1.png") no-repeat scroll 0 0 transparent;
+}
+.connect_right .inactive {
+    background: url("../../img/connect_2.png") no-repeat scroll 0 0 transparent;
+}
+.connect_middle .inactive {
+    background: url("../../img/connect_3.png") no-repeat scroll 0 0 transparent;
+}
+/*   Hover
+---------------------*/
+.connect_left .inactive:hover {
+    background: url("../../img/connect_1_hover.png") no-repeat scroll 0 0 transparent;
+}
+.connect_right .inactive:hover {
+    background: url("../../img/connect_2_hover.png") no-repeat scroll 0 0 transparent;
+}
+.connect_middle .inactive:hover {
+    background: url("../../img/connect_3_hover.png") no-repeat scroll 0 0 transparent;
+}
+/*  Active
+-----------------*/
+.connect_left .active,.connect_right .active,.connect_middle .active{
+    display: inline-block;
+    float: left;
+    padding-top: 180px;
+    width: 291px;
+	cursor: default;
+}
+.connect_left .active {
+    background: url("../../img/connect_1_active.png") no-repeat scroll 0 0 transparent;
+}
+.connect_right .active{
+	background: url("../../img/connect_2_active.png") no-repeat scroll 0 0 transparent;
+}
+.connect_middle .active{
+	background: url("../../img/connect_3_active.png") no-repeat scroll 0 0 transparent;
+}
+/*	Fifth step style cash investment
+----------------------------------*/
+/*  Default
+---------------*/
+.enough .inactive,.equal .inactive,.equity .inactive,.hourly .inactive{
+    display: inline-block;
+    float: left;
+    padding-top: 130px;
+    width: 100%;
+}
+.enough .inactive {
+    background: url("../../img/imoney1a.png") no-repeat scroll center center transparent;
+}
+.equal .inactive {
+    background: url("../../img/imoney2a.png") no-repeat scroll center center transparent;
+}
+.equity .inactive {
+    background: url("../../img/imoney3a.png") no-repeat scroll center center transparent;
+}
+.hourly .inactive {
+    background: url("https://d2qcctj8epnr7y.cloudfront.net/images/2013/image-hourly-1b.png") no-repeat scroll center center transparent;
+}
+.span4 .active{ 
+	background-color: #F0F7FD;
+    border: 10px solid #D0E3F0;
+    text-align: center;}
+/*   Hover
+---------------------*/
+.enough .inactive:hover {
+    background: url("../../img/amoney1b.png") no-repeat scroll center center transparent;
+}
+.equal .inactive:hover {
+    background: url("../../img/amoney2b.png") no-repeat scroll center center transparent;
+}
+.equity .inactive:hover {
+    background: url("../../img/amoney3b.png") no-repeat scroll center center transparent;
+}
+.hourly .inactive:hover {
+    background: url("https://d2qcctj8epnr7y.cloudfront.net/images/2013/image-hourly-1a.png") no-repeat scroll center center transparent;
+}
+/*  Active
+-----------------*/
+.enough .active,.equal .active,.equity .active,.hourly .active{
+    display: inline-block;
+    float: left;
+    padding-top: 130px;
+    width: 100%;
+	cursor: default;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+}
+.enough .active {
+    background: url("../../img/amoney1b.png") no-repeat scroll center center transparent;
+}
+.equal .active{
+	background: url("../../img/amoney2b.png") no-repeat scroll center center transparent;
+}
+.equity .active{
+	background: url("../../img/amoney3b.png") no-repeat scroll center center transparent;
+}
+.hourly .active{
+	background: url("https://d2qcctj8epnr7y.cloudfront.net/images/2013/image-hourly-1a.png") no-repeat scroll center center transparent;
+}
+/*	Step Sixth style
+---------------------------------------------------*/
+.steps6Inner h3 {
+    border: medium none;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
+    padding: 10px 0;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+background: url("../../img/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6 !important;
+color: #555555;
+}
+/*	Seventh step
+-----------------------------------------*/
+.userphoto {
+    border: 1px solid #D7D7D7;
+    height: 110px;
+    padding: 9px;
+    position: relative;
+    width: 94px;
+	margin-left: 20px;
+}
+/*         STYLE 2 BLUE ARROW
+-------------------------------------------------------------------------------------------*/
+#blue-2-left li.active:after {
+    border-bottom: 6px solid rgba(0, 0, 0, 0);
+    border-left: 6px solid #169EF4;
+    border-top: 6px solid rgba(0, 0, 0, 0);
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: -5px;
+    top: 12px;
+}
+#blue-2-left li.active{
+    position:relative;
+    margin-bottom: 1px;
+}
+#blue-2-left li.active a, #blue-2-left li.active i,#blue-2-left li.active:hover a{
+    background: none repeat scroll 0 0 #169EF4;
+    color: #FFFFFF;
+    border-left: 2px solid #0C91E5;
+}
+#blue-2-left li.active i,#blue-2-left li.active:hover i {
+    background: none repeat scroll 0 0 #0C91E5 !important;
+}
+#blue-2-left li i{
+    background: none repeat scroll 0 0 #E0EAF0;
+    color: #B9CBD5;
+    display: inline-block;
+    font-size: 15px;
+    margin: 0 8px 0 0;
+    padding: 12px 10px 10px 8px;
+    text-align: center;
+	width: 20px;
+}
+ #blue-2-left li:hover i{
+     background: none repeat scroll 0 0 #C4D5DF !important;
+     color: #fff;
+ }
+ #blue-2-left li:hover a{
+     background: none repeat scroll 0 0 #E0EAF0;
+ }
+#blue-2-left li a{
+    background: none repeat scroll 0 0 #F0F6FA;
+    border-left: 2px solid #C4D5DF;
+    color: #557386;
+    display: block;
+    font-size: 13px;
+    border-radius: 0;
+    padding-bottom:0;
+    padding-top: 0;
+    padding-left: 0;
+}
+#blue-2-left li a,#blue-2-left li a:focus,#blue-2-left li a:active,#blue-2-left li a:hover{
+    outline:none;
+}
+#blue-2-left li:hover a{
+    background: none repeat scroll #e0eaf0;
+}
+.tabs-blue2 > .nav-tabs{
+    border-right: none;
+    border-bottom: none;
+}
+.tabs-blue2  > .nav-tabs > li > a,.tabs-blue2  > .nav-tabs > li > a:hover,.tabs-blue2  > .nav-tabs > li > a:focus{
+    margin-right:0;
+    border: none;
+}
