@@ -1,0 +1,142 @@
+div#multiColumn {
+    -moz-column-count: 3;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 20px;
+    column-count: 3;
+    column-gap: 20px;
+}
+div#multiColumn ul li {
+list-style-type: none;
+}
+.vernames h3 {
+font-size:18px;
+}
+.verb {
+margin-top: 30px;
+margin-bottom: 20px;
+border-bottom: 1px solid #333;
+padding-bottom: 30px;
+background: none repeat scroll 0px 0px rgba(0, 0, 0, 0.3);
+border-radius: 6px;
+}
+.verb h2 {
+text-align:center;
+}
+.vertical-list {
+background:none;
+padding: 10px;
+border-radius: 15px;
+}
+.vertical-list li.col-md-4 {
+margin-bottom: 8px;
+}
+.vertical-list ul li a {
+color:#2A8637;
+}
+.fund-container {
+border: 1px solid #74AC02;
+padding: 5px 5px 0px 5px;
+}
+.funded-l {
+float:left;
+}
+.funded-r {
+float:right;
+}
+.funded-l .fund-icon {
+float:left;
+font-size: 37px;
+margin-right: 10px;
+}
+.funded-l .fund-details {
+float:left;
+}
+.funded-l .fund-details p {
+margin:0px;
+}
+.funded-r .fund-icon {
+float:left;
+font-size: 37px;
+margin-right: 10px;
+}
+.funded-r .fund-details {
+float:left;
+}
+.funded-r .fund-details p {
+margin:0px;
+}
+.fundpage {
+margin-bottom: 20px;
+border-bottom: none;
+padding-bottom: 40px;
+}
+.fundpage h2 {
+text-align:center;
+margin: 0px;
+background: none repeat scroll 0px 0px rgba(0, 0, 0, 0.5);
+padding: 10px;
+border-radius: 6px;
+}
+.fundpage .venture-list li.col-md-3 {
+background: #2A8637;
+padding: 10px;
+border-radius: 6px;
+margin: 5px;
+}
+.fundpage .venture-list .col-md-3 {
+width: 24%;
+}
+.venture-list .vlink {
+font-size: 22px;
+color: #fff;
+display: block;
+background: #333;
+padding: 3px 5px;
+text-decoration: none;
+border-radius:0 0 6px 6px;
+margin-bottom: 10px;
+}
+.venture-list .vlink:hover {
+color:#80B50F;
+}
+.venture-list .vdesc {
+height:120px;
+}
+.venture-list .img-responsive {
+border-radius: 6px 6px 0 0;
+width: 254px;
+height: 140px;
+}
+/*developer*/
+.devpage {
+background: #2A8637;
+text-align: center;
+padding: 30px;
+border-radius: 6px;
+margin-bottom: 30px;
+}
+.devpage .devbox {
+text-align:left;
+}
+.devpage .devdesc {
+font-size:21px;
+line-height: 27px;
+margin-bottom:20px;
+}
+.devpage .proceedto {
+text-align:center;
+}
+.devpage .proceedto a {
+background: #232323;
+padding:5px 12px;
+border-radius:6px;
+}
+.devpage .proceedto a:hover {
+color:#fff;
+}
+.devpage .fa {
+font-size: 40px;
+vertical-align: -5px;
+}
+

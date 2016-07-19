@@ -1,0 +1,12 @@
+<?php
+$domain = '{{DOMAIN}}';
+$domainid = '{{DOMAIN_ID}}';
+$domainname = '{{DOMAIN_NAME}}';
+$title = '{{TITLE}}';
+$logo = '{{LOGO}}';
+$description = '{{DESCRIPTION}}';
+$account_ga = '{{ACCOUNT_GA}}';
+$footer_banner = '{{FOOTER_BANNER}}';
+$follow_count = '{{}}';
+
+?>

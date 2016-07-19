@@ -1,0 +1,1 @@
+<script type="text/javascript" src="http://contrib.com/widgets?ma=micronews&dn=<?echo $_GET['domain_name']?>"></script>

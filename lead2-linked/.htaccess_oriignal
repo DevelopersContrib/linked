@@ -1,0 +1,57 @@
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine on
+
+  # Rewrite URLs of the form 'x' to the form 'index.php?q=x'.
+  RewriteBase /
+  RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)\index.html$ index.php
+  RewriteRule ^about\/?$ about.php
+  RewriteRule ^contactus\/?$ contact.php
+  RewriteRule ^contact\/?$ contact.php   
+  RewriteRule ^sponsor\/?$ sponsor.php   
+  RewriteRule ^staffing\/?$ staffing.php   
+  RewriteRule ^services\/?$ services.php   
+  RewriteRule ^terms\/?$ terms.php   
+  RewriteRule ^privacy\/?$ privacy.php   
+  RewriteRule ^referral\/?$ referral.php   
+  RewriteRule ^partners\/?$ partners.php
+  RewriteRule ^fund\/?$ fund.php
+  RewriteRule ^developers\/?$ developers.php   
+  RewriteRule ^talk\/?$ talk.php
+  RewriteRule ^thanks\/?$ thanks.php
+  RewriteRule ^sitemap.html\/?$ sitemap.php
+  
+  
+  RewriteRule ^rss$ rss.php
+  RewriteRule ^thankyou$ thankyou.php
+  RewriteRule ^view-([0-9]+)-(.*)\.html$ view.php?title=$2&post_link=$1 [NC]
+  RewriteRule ^category-(.*)\.html$ category.php?pagename=$1 [NC]
+
+ #  RewriteRule ^([A-Za-z0-9]+)\/([0-9]+)\/css/(.*)  css/$3
+#  RewriteRule ^([A-Za-z0-9]+)\/([0-9]+)\/images/(.*) images/$3
+ # RewriteRule ^([A-Za-z0-9]+)\/([0-9]+)\/js/(.*) js/$3
+ # RewriteRule ^category/([a-z]+)/keyword/([a-z]+)?$ category.php?category=$1&keyword=$2 [NC]
+  RewriteRule ^category/([a-z]+)?$ category.php?pagename=$1 [NC]
+  RewriteCond %{HTTP_USER_AGENT} ^BackWeb [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^Bandit [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^BatchFTP [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^BecomeBot [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^BlackWidow [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^Net\ Vampire [NC]
+  # why not come visit me directly?
+  RewriteCond %{HTTP_REFERER} \.opendirviewer\. [NC,OR]
+  # this prevents stoopid cross-site discovery attacks..
+  RewriteCond %{THE_REQUEST} \?\ HTTP/ [NC,OR]
+  # please stop pretending to be the Googlebot..
+  RewriteCond %{HTTP_REFERER} users\.skynet\.be.* [NC,OR]
+  RewriteCond %{QUERY_STRING} \=\|w\| [NC,OR]
+  RewriteCond %{THE_REQUEST} etc/passwd [NC,OR]
+  RewriteCond %{REQUEST_URI} owssvr\.dll [NC,OR]
+  RewriteCond %{QUERY_STRING} \=\|w\| [NC,OR]
+  RewriteCond %{THE_REQUEST} \/\*\ HTTP/ [NC,OR]
+  RewriteRule . abuse.txt [L]
+</IfModule>
