@@ -18,24 +18,426 @@
 						$('.emailadd-msg').text('Please enter valid email address.');
 						$('input[name=emailadd]').parents('.form-group').addClass("has-error");
 					}
-			if (flagEmail==true){
-				// $_SESSION['varname'] = $var_value;
-				var sEmail = $('#emailadd').val();
-				document.cookie = sEmail;
-				window.location.href = 'signup.php', sEmail ;
-			};	
-		});
-		function validateEmail(sEmail) {
-		var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-			if (filter.test(sEmail)){
-				 return true;
+				if (flagEmail==true){
+					// $_SESSION['varname'] = $var_value;
+					$.post('http://www.contrib.com/signup/checkemailexists',
+					{
+						email:sEmail
+					},function(data){
+						if (data.exists) {
+						$('.emailadd-msg').addClass("help-block");
+						$('.emailadd-msg').text('Email Already Exists');
+						$('input[name=emailadd]').parents('.form-group').addClass("has-error");
+						}else{
+							var sEmail = $('#emailadd').val();
+							$.session.set('email', sEmail);
+							 window.location.href = 'signup';
+
+						}
+					}
+					)	
+
+
+				};	
+			});
+			function validateEmail(sEmail) {
+			var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+				if (filter.test(sEmail)){
+					 return true;
+				}
+				else{
+				return false;
+				}
 			}
-			else{
-			return false;
-			}
-		}
 	});
 </script>
+
+<script type="text/javascript">
+		function liAuth(){
+	   IN.User.authorize(function(){
+		   getProfileData();
+	   });
+	}
+
+    // Handle the successful return from the API call
+    function onSuccess(data) {
+        console.log(data);
+    }
+
+    // Handle an error response from the API call
+    function onError(error) {
+        console.log(error);
+    }
+
+    // Use the API call wrapper to request the member's basic profile data
+    function getProfileData() {
+        //IN.API.Raw("/people/~").result(onSuccess).error(onError);
+		IN.API.Profile("me").fields("first-name", "last-name", "email-address","public-profile-url").result(function (data) {
+			console.log(data);
+			// document.getElementById("email").value = data.values[0].emailAddress;
+			// document.getElementById("firstname").value = data.values[0].firstName;
+			// document.getElementById("lastname").value = data.values[0].lastName;
+			//document.getElementById('btn-linkedin').style.display = 'none';
+				
+				var email = data.values[0].emailAddress;
+				var firstname = data.values[0].firstName;
+				var lastname = data.values[0].lastName;
+
+				var formdata = {
+					email:email,
+					firstname:firstname,
+					lastname:lastname
+				}
+
+			$.post('http://www.contrib.com/signup/checkemailexists',
+					{
+						email:email
+					},function(data){
+						if (data.exists) {
+						$('.emailadd-msg').addClass("help-block");
+						$('.emailadd-msg').text('Your Email in LinkedIn Already Exists');
+						$('input[name=emailadd]').parents('.form-group').addClass("has-error");
+							$.session.set('email', email);
+							$.session.set('firstname', firstname);
+							$.session.set('lastname',lastname);
+						console.log(formdata);
+						}else{
+							console.log(formdata);
+							$.session.set('email', email);
+							$.session.set('firstname', firstname);
+							$.session.set('lastname',lastname);
+							 window.location.href = 'signup';
+
+						}
+					}
+					)
+		}).error(function (data) {
+			console.log(data);
+		});
+    }
+</script>
+
+<script type="text/javascript">
+	
+	// for facebook retrieve 
+    
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+		
+
+   function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      // document.getElementById('status').innerHTML = 'Please log ' +
+      //   'into this app.';
+      console.log("please log into this app");
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      // document.getElementById('status').innerHTML = 'Please log ' +
+      //   'into Facebook.';
+        console.log("Please Login to Facebook");
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '296067360739698',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.6' // use graph api version 2.5
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  // FB.getLoginStatus(function(response) {
+  //   // statusChangeCallback(response);
+  //   	if (response.status === 'connected') {
+  //   			testAPI();
+  //   	}else{
+		// 	initializeFblogin();
+  //   	}
+  // });
+
+  };
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      // statusChangeCallback(response);
+      			if (response.status === 'connected') 
+      			{
+    				testAPI();
+			    }
+			    else
+			    {
+					initializeFblogin();
+			    }
+    });
+  }
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me?fields=name,email,first_name,last_name', function(response) {
+      console.log('Successful login for: ' + response.name + " " + response.email + " " + response.first_name + " " + response.last_name);
+      var myemail = response.email;
+      var first_name = response.first_name;
+      var last_name = response.last_name;
+
+	  var formdata = {
+				myemail:myemail,
+				first_name:first_name,
+				last_name:last_name
+	   }
+
+			console.log(formdata);
+			$.post('http://www.contrib.com/signup/checkemailexists',
+					{
+						myemail:myemail
+					},function(data){
+						if (data.exists) {
+						$('.emailadd-msg').addClass("help-block");
+						$('.emailadd-msg').text('Your Email in Facebook Already Exists');
+						$('input[name=emailadd]').parents('.form-group').addClass("has-error");
+						console.log(formdata);
+								$.session.set('email', myemail);
+							$.session.set('firstname', first_name);
+							$.session.set('lastname',last_name);	
+						}else{
+							console.log(formdata);
+							$.session.set('email', myemail);
+							$.session.set('firstname', first_name);
+							$.session.set('lastname',last_name);	
+							 window.location.href = 'signup';
+						
+						}
+					}
+					)
+
+    });
+  }
+
+  function initializeFblogin(){
+   		FB.login(function(response) {
+           testAPI();
+         }, {scope: 'public_profile,email'});
+  	 }
+</script>
+
+<script type="text/javascript">
+
+		var auth2 = {};
+		var helper = (function() {
+		  return {
+		    /**
+		     * Hides the sign in button and starts the post-authorization operations.
+		     *
+		     * @param {Object} authResult An Object which contains the access token and
+		     *   other authentication information.
+		     */
+		    onSignInCallback: function(authResult) {
+		      $('#authResult').html('Auth Result:<br/>');
+		      for (var field in authResult) {
+		        $('#authResult').append(' ' + field + ': ' +
+		            authResult[field] + '<br/>');
+		      }
+		      if (authResult.isSignedIn.get()) {
+		        $('#authOps').show('slow');
+		        $('#gConnect').hide();
+		        helper.profile();
+		        
+		      } else {
+		          if (authResult['error'] || authResult.currentUser.get().getAuthResponse() == null) {
+		            // There was an error, which means the user is not signed in.
+		            // As an example, you can handle by writing to the console:
+		            console.log('There was an error: ' + authResult['error']);
+		          }
+		          $('#authResult').append('Logged out');
+		          $('#authOps').hide('slow');
+		          $('#gConnect').show();
+		      }
+		      console.log('authResult', authResult);
+		    },
+
+		    /**
+		     * Calls the OAuth2 endpoint to disconnect the app for the user.
+		     */
+		    disconnect: function() {
+		      // Revoke the access token.
+		      auth2.disconnect();
+		    },
+		    /**
+		     * Gets and renders the currently signed in user's profile data.
+		     */
+		    profile: function(){
+		      gapi.client.plus.people.get({
+		        'userId': 'me'
+		      }).then(function(res) {
+		        var profile = res.result;
+		        console.log(profile);
+		        var name = res.result.displayName;
+		        for (var i=0; i < profile.emails.length; i++){
+		        	var email = profile.emails[i].value;
+		        }
+		        var firstname = profile.name.familyName;
+		        var lastname = profile.name.givenName;
+		        console.log(email);
+		       	console.log(firstname);
+		        console.log(lastname);
+
+		        var formdata = {
+		        	email:email,
+		        	firstname:firstname,
+		        	lastname:lastname
+		        }
+
+		        	$.post('http://www.contrib.com/signup/checkemailexists',
+					{
+						email:email
+					},function(data){
+						if (data.exists) {
+						$('.emailadd-msg').addClass("help-block");
+						$('.emailadd-msg').text('Your Email in Google Already Exists');
+						$('input[name=emailadd]').parents('.form-group').addClass("has-error");
+						console.log(formdata);
+								$.session.set('email', email);
+							$.session.set('firstname', firstname);
+							$.session.set('lastname',lastname);	
+						}else{
+							console.log(formdata);
+							$.session.set('email', email);
+							$.session.set('firstname', firstname);
+							$.session.set('lastname',lastname);	
+							 window.location.href = 'signup';
+						
+						}
+					}
+					)
+
+
+
+		      }, function(err) {
+		        var error = err.result;
+		        $('#profile').empty();
+		        $('#profile').append(error.message);
+		      });
+		    }
+		  };
+		})();
+
+		/**
+		 * jQuery initialization
+		 */
+		// $(document).ready(function() {
+		//   $('#disconnect').click(helper.disconnect);
+		//   $('#loaderror').hide();
+		//   if ($('meta')[0].content == '458431187548-hh7e32mu2iqs960ram2b6m0vt6pmoe9c.apps.googleusercontent.com') {
+		//     alert('This sample requires your OAuth credentials (client ID) ' +
+		//         'from the Google APIs console:\n' +
+		//         '    https://code.google.com/apis/console/#:access\n\n' +
+		//         'Find and replace CLIENT ID   with your client ID.'
+		//     );
+		//   }
+		// });
+
+		/**
+		 * Handler for when the sign-in state changes.
+		 *
+		 * @param {boolean} isSignedIn The new signed in state.
+		 */
+		var updateSignIn = function() {
+		  console.log('update sign in state');
+		  if (auth2.isSignedIn.get()) {
+		    console.log('signed in');
+		    helper.onSignInCallback(gapi.auth2.getAuthInstance());
+		  }else{
+		    console.log('signed out');
+		    helper.onSignInCallback(gapi.auth2.getAuthInstance());
+		  }
+		}
+		/**
+		 * This method sets up the sign-in listener after the client library loads.
+		 */
+		function startApp() {
+		  gapi.load('auth2', function() {
+		    gapi.client.load('plus','v1').then(function() {
+		      gapi.signin2.render('googlelogin', 
+		      {
+		          scope: 'https://www.googleapis.com/auth/plus.login',
+		          width: '425px',
+		          theme: 'dark',
+		          fetch_basic_profile: true 
+
+		      });
+		    $(".abcRioButton").css({"width": "420", "height": "36px"});
+		     $(".abcRioButtonWhite").css({"width": "420", "height": "36px"});
+		      gapi.auth2.init({
+		           client_id: '458431187548-hh7e32mu2iqs960ram2b6m0vt6pmoe9c.apps.googleusercontent.com',
+		           cookiepolicy: 'single_host_origin',
+		           fetch_basic_profile: true,
+		           scope:'https://www.googleapis.com/auth/plus.login'}).then(
+		            function (){
+		              console.log('init');
+		              auth2 = gapi.auth2.getAuthInstance();
+		              auth2.isSignedIn.listen(updateSignIn);
+		              auth2.then(updateSignIn);
+		            });
+		    });
+		  });
+		  	    $(".abcRioButton").css({"width": "420", "height": "36px"});
+		     $(".abcRioButtonWhite").css({"width": "420", "height": "36px"});
+		}
+
+		</script>
+		
+		<script src="https://apis.google.com/js/client:platform.js?onload=startApp"></script>
+
+<style type="text/css">
+	
+	.fb {
+		background-color: #3A589B;
+	}
+	.twitter {
+		background-color: #3A589B;
+	}
+	.linkedin {
+		background-color: #1D87BD;
+	}
+	.google {
+		background-color: #D6492F;
+	}
+
+</style>
 	<body>
 		<div class="section-1">
 			<div class="overlaydot"></div>
@@ -57,6 +459,12 @@
 								</div>
 								<div class="form-group">
 									<a href="#" class="btn btn-success btn-lg text-uppercase btn-block" id="next-email">get started</a>
+								</div>
+								<div class="form-group">
+									<a  href="javascript:;" onclick="liAuth()"  class="btn btn-info btn-block btn-lg text-uppercase linkedin">Sign up via <i class="fa fa-linkedin-square"></i> LinkedIn</a>
+									<a  href="javascript:;" onclick="checkLoginState()"  class="btn btn-info btn-block btn-lg text-uppercase fb">Sign up via <i class="fa fa-facebook-square"></i> Facebook</a>
+<!-- 									<a  href="javascript:;" id="" class="btn btn-info btn-block btn-lg text-uppercase google">Sign up via <i class="fa fa-google-plus-square"></i>Google</a>
+ -->									<div id="googlelogin" style="margin-top:5px;"></div>
 								</div>
 							</div>
 						</div>
@@ -261,7 +669,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="section-3">
+		<!-- <div class="section-3">
 			<div class="overlaydot"></div>
 			<div class="container">
 				<div class="row">
@@ -451,6 +859,49 @@
 					</div>
 				</div>
 			</div>
+		</div> -->
+		<div class="section-3">
+			<div class="overlaydot"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<h1 class="ttle">Follow Linked.com and other great ventures <br> on the Contrib platform. </h1>
+						<br><br>
+					</div>
+					<div class="col-md-12">
+						<div class="owl-carousel container-feature">
+							<?php foreach ($featuredsite as $featuredsite) { ?>
+								   <div class="wrap-marketplace-box-item">
+                            <a class="wmbi-img-logo" href="http://<?php echo $featuredsite['domain_name']; ?>">
+                                <?php if(!empty($featuredsite['logo'])):?>
+									<img src="<?php echo $featuredsite['logo']; ?>" class="img-responsive" alt="<?php echo $featuredsite['domain_name']; ?>">
+								<?php else: ?>
+									<img src="https://d2qcctj8epnr7y.cloudfront.net/contrib/logo-contrib-brand2.png" class="img-responsive">
+								<?php endif; ?>
+                            </a>
+                            <h3 class="marg-m-ttlTop text-capitalize wmbi-ttle ellipsis">
+                                <?php echo $featuredsite['domain_name']; ?>
+                            </h3>
+                            <p class="p-marg-btm">
+                                Join our exclusive community of like minded people
+                            </p>
+                            <p>
+                                <a target="_blank" href="http://<?php echo $featuredsite['domain_name']; ?>"><?php echo $featuredsite['domain_name']; ?></a>
+                            </p>
+                            <ul class="list-inline ul-wmbi-zero">
+                                <li>
+                                    <a class="btn btn-success btn-lg" target="_blank" href="http://<?php echo $featuredsite['domain_name']; ?>">Visit</a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-success btn-lg" target="_blank" href="https://contrib.com/brand/details/<?php echo $featuredsite['domain_name']; ?>">Details</a>
+                                </li>
+                            </ul>
+                        </div>
+							<?php }?>		
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="section-4">
 			<div class="container">
@@ -484,31 +935,7 @@
 		<div class="section-5">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12 wrap-ecorp-container">
-						<div class="row">
-							<div class="col-md-4">
-								<img style="margin-top:-50px;" class="img-responsive" src="http://d2qcctj8epnr7y.cloudfront.net/images/marvinpogi/logo-ecorp2.png" alt="">
-							</div>
-							<div class="col-md-8 ecorp-desc">
-								<h1 class="ttle">About <strong>Linked.com</strong></h1>
-								<br>
-								<p>
-									Linked.com Platform is part of the Global Ventures Network.
-								</p>
-								<p>
-									Founded in 1996, Global Ventures is the worlds largest virtual Domain Development Incubator on the planet.
-								</p>
-								<p>
-									We create and match great domain platforms with talented people, applications and resources to build successful, value driven, web-based businesses. Join the fastest growing Virtual Business Network and earn Equity and Cowork with other great people making a difference.
-								</p>
-								<p>
-									<a href="" class="btn btn-primary btn-lg text-uppercase">
-										Learn about this site
-									</a>
-								</p>
-							</div>
-						</div>
-					</div>
+					
 					<div class="col-md-12 wrap-apply-container">
 						<script type="text/javascript" src="http://tools.contrib.com/contactform?d=<?echo $info['domain']?>&f=staffing"></script>
 					</div>
