@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Linked.com</title>
+		<title>Linked.com - Linking people, skills and opportunities</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	    <meta name="description" content="Demo project with jQuery">
+	    <meta name="title" content="Linked - Linking people, skills and opportunities to create the worlds largest crowd commerce business creation system.">
+		<meta name="description" content="Linked - Linking people, skills and opportunities to create the worlds largest crowd commerce business creation system.">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon"  type="image/png" href="favicon.ico" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
@@ -28,9 +29,16 @@
 		<script src="js/owl.carousel.min.js"></script>
 		<script type="text/javascript" src="js/jquery.rateit.js"></script>	
 		<link rel="stylesheet" type="text/css" href="css/rateit.css">
-
+		<script type="text/javascript" src="js/session/jquerysession.js"></script>
+		<!-- ma'am kareen linkedin account -->
+		<script type="text/javascript" src="//platform.linkedin.com/in.js"> 
+			api_key: 78c8mstf5k8lbd
+			authorize: true
+		</script>
+		<script type="text/javascript" src="/js/linkedin.js"></script>
 		<!-- custom js-->
 		<script type="text/javascript" src="js/signup.js"></script>
+    <script src="http://tools.contrib.com/cwidget?d=linked.com&p=sb&c=f"></script>
 		
 		
 		<script>

@@ -1,5 +1,6 @@
 <?php include 'header.php';?>
 <style type="text/css">
+
 	.working {
     background: #FFF url("images/ajax-loader.gif") no-repeat scroll right center !important;
     padding-right: 2px;
@@ -49,6 +50,12 @@
 	  	 margin-top: 30px;
 	  	 margin-bottom:30px;
 	  }
+	  .thanks-container {
+	background: none repeat scroll 0px 0px rgba(0, 0, 0, 0.7);
+	padding: 10px 40px 100px;
+	border-radius: 3px;
+	margin-bottom: 100px;
+}
 
 	  
 </style>
@@ -86,6 +93,7 @@
 									</label>
 								</div>
 							</div>
+							<input type="hidden" id="opportunity" name="opportunity">
 						</div>
 						<div class="col-md-4 col-md-offset-4">
 							<div class="form-group">
@@ -224,7 +232,7 @@
 								</label>
 								
 
-								<table class="cust-table-rating" class="ratetable"cellspacing="0" cellpadding="5" border="0">
+								<table class="cust-table-rating" cellspacing="0" cellpadding="5" border="0" class="ratetable">
 								<tbody>
 									<!--name of the experience-->
 											<?php for($ci=0;$ci<sizeof($experiencesarray);$ci++) { ?>
@@ -237,7 +245,7 @@
 												<?php for ($i=01; $i <6 ; $i++) { ?> 
 													<input name="star-skill<?=$experiencesarray[$ci]['skill_id']?>"type="radio" class="star" value="<?php echo $i?>">
 												 <?php } ?>
-												 <input type="hidden" class="rateinput" name="" id="skill_id<?=$experiencesarray[$ci]['skill_id']?>" value="<?=$experiencesarray[$ci]['skill_id']?>">
+												 <input type="hidden" id="skill_id<?=$experiencesarray[$ci]['skill_id']?>" value="<?=$experiencesarray[$ci]['skill_id']?>" class="rateinput">
 											</td>	
 									</tr>
 										<?php }?>	
@@ -378,14 +386,33 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
+					<!--thank you page -->
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<div class="row step6 step index2 hide">
+						<div class="col-md-12 text-center">
+								<div class="col-md-8 col-md-offset-2 thanks-container">
+										<img src="https://s3.amazonaws.com/assets.zipsite.net/icons/icon-thankyou-800x400.png" style="height:200px; margin:0 auto;">
+										<h2>for signing up!</h2>
+										<hr>
+										<p>Thank you for signing up, Share <?php echo ucfirst($domain)?> with you friends to move up in Linking people, skills and opportunities.</p>
+										<div class="form-group col-md-4 col-md-offset-4">
+											<a href="loadbrands.php" id="oppoturnity" class="btn btn-success btn-lg btn-block fnt-700">
+												<i class="fa fa-check"></i>
+												Browse Opportunity now !
+											</a>
+										</div>
+								</div>
+					  	</div>
+					</div>
 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
 	<script type="text/javascript"src="js/jquery.rating-short.js"></script>	
 	<script type="text/javascript" src="js/jquery.rateit.js"></script>	
 	<link rel="stylesheet" type="text/css" href="css/rateit.css">
+	<script type="text/javascript" src="js/nprogress/nprogress.js"></script>
+	<link rel="stylesheet" type="text/css" href="js/nprogress/nprogress.css">
 
 	<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
@@ -405,7 +432,7 @@
 						source: 'http://www.contrib.com/network/autocompleteCity/'+country_name,
 						minLength: 2,
 						select: function (event, ui) {   
-							var selectedObj = ui.item;s
+							var selectedObj = ui.item;
 							var cityname = selectedObj.value;
 							$('#city').text(cityname);	
 							$(this).removeClass('working');
@@ -423,8 +450,8 @@
 						$(document).ready(function (e) {
 							$("#uploadimage").on('submit',(function(e) {
 								e.preventDefault();
-								$("#message").empty();
 								$('.waiting').show();
+								 NProgress.set(0.5)
 
 							$.ajax
 								({
@@ -435,11 +462,13 @@
 									cache: false,             
 									processData:false,        
 									success: function(data)   
-									{
+									{	
+										NProgress.done()
 										$('#pic_url').val(data);
 										swal("Image Loaded Succesfully!","Success", "success");
 										$('.waiting').hide();
 									}
+									
 									});
 							}));
 
